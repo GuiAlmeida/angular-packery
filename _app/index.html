@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="ngPackery">
+<head>
+    <base href="\">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [data-packery-item] {
+            /*display: block;*/
+            /*width: 200px;*/
+            background: #333;
+            color: #fff;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body data-ng-view>
+<h1>AngularJS Packery Test</h1>
+
+
+<div data-packery data-packery-options='{"columnWidth": 200}'>
+    <div data-packery-item data-ng-repeat="n in [42, 42, 43, 43] track by $index">
+        {{n}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium autem consequuntur cumque expedita
+        facere fugit in iusto minus nesciunt nihil nisi odit officia omnis quae repellat repudiandae tempora, totam
+        veritatis!
+    </div>
+    <div data-packery-item ng-repeat="n in [42, 42, 43, 43] track by $index">
+        {{n}}
+    </div>
+    <div data-packery-item>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa cupiditate deserunt eligendi
+        eos
+        error, ex facere fugit id laboriosam minus necessitatibus nesciunt officiis perferendis perspiciatis,
+        praesentium recusandae veniam vitae voluptatem?
+    </div>
+    <div data-packery-item>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa cupiditate deserunt eligendi
+        eos
+        error, ex facere fugit id laboriosam minus necessitatibus nesciunt officiis perferendis perspiciatis,
+        praesentium recusandae veniam vitae voluptatem?
+    </div>
+</div>
+
+
+<script>window.angular || document.write('<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"><\/script>')</script>
+<script>window.Packery || document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/packery/1.4.3/packery.pkgd.js"><\/script>')</script>
+<script src="angular-packery.js"></script>
+</body>
+</html>
