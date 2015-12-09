@@ -67,6 +67,7 @@ bower_components/
 
 build/
 dist/
+test/
 ### Example user template template
 ### Example user template
 
