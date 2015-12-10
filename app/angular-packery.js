@@ -13,7 +13,7 @@ angular.module('ngPackery', [])
             this.container = new Packery(this.config.packeryContainer, opts);
         };
 
-        this.config = {}
+        this.config = {};
         this.container = undefined;
         this.ready = ready;
         this.initialize = initialize;
@@ -69,7 +69,7 @@ angular.module('ngPackery', [])
         };
     })
     .directive('packeryAfterRender', ($timeout) => {
-        'ngInject'
+        'ngInject';
         let link = (scope, element, attributes, controller) => {
             if (scope.$last) {
                 let timeout = null;
