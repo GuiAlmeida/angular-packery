@@ -28,6 +28,10 @@ angular.module('ngPackery', [])
                 if (obj.attr('ng-repeat') !== undefined || obj.attr('data-ng-repeat') !== undefined) {
                     flag = true;
                     obj.attr('data-packery-after-render', '');
+                } else if (angular.element(obj).find('[ng-repeat]').length >= 1 || angular.element(obj).find('[data-ng-repeat]').length >= 1) {
+                    flag = true;
+                    var objects = angular.element(obj).find('[ng-repeat]').length >= 1 ? angular.element(obj).find('[ng-repeat]') : angular.element(obj).find('[data-ng-repeat]');
+                    objects.attr('data-packery-after-render', '');
                 }
             });
 
