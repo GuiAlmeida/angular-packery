@@ -65,8 +65,6 @@ node_modules/
 bower_components/
 *.log
 
-_app/
-build/
 dist/
 test/
 ### Example user template template
