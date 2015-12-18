@@ -16,15 +16,22 @@ import handleErrors from '../util/handleErrors';
 import browserSync  from 'browser-sync';
 import ngAnnotate   from 'browserify-ngannotate';
 
+function createSourcemap() {
+    return !global.isProd || config.browserify.prodSourcemap;
+}
+
 function buildScript(file) {
 
     var bundler = browserify({
         entries: [config.sourceDir + file],
-        debug: false,
+        baseDir: config.sourceDir,
+        debug: false,//createSourcemap(),
         cache: {},
         packageCache: {},
-        fullPaths: !global.isProd,
+        fullPaths: false,
     });
+
+    bundler.external('jQuery');
 
     if (!global.isProd) {
         bundler = watchify(bundler);
@@ -37,8 +44,7 @@ function buildScript(file) {
 
     const transforms = [
         {'name': babelify, 'options': {}},
-        {'name': ngAnnotate, 'options': {}},
-        {'name': 'brfs', 'options': {}}
+        {'name': ngAnnotate, 'options': {}}
     ];
 
     transforms.forEach((transform) => {
@@ -47,19 +53,19 @@ function buildScript(file) {
 
     function rebundle() {
         const stream = bundler.bundle();
-        const createSourcemap = global.isProd && config.browserify.prodSourcemap;
+        const sourceMapLocation = global.isProd ? './' : '';
 
         return stream.on('error', handleErrors)
             .pipe(source(file))
-            .pipe(gulpif(createSourcemap, buffer()))
-            .pipe(gulpif(createSourcemap, sourcemaps.init()))
+            .pipe(gulpif(createSourcemap(), buffer()))
+            .pipe(gulpif(createSourcemap(), sourcemaps.init({loadMaps: true})))
             .pipe(gulpif(global.isProd, streamify(uglify({
                 mangle: true,
                 compress: {drop_console: true}
             }))))
-            .pipe(gulpif(createSourcemap, sourcemaps.write('./')))
+            .pipe(gulpif(createSourcemap(), sourcemaps.write(sourceMapLocation)))
             .pipe(gulp.dest(config.scripts.dest))
-            .pipe(browserSync.stream({once: true}));
+            .pipe(browserSync.stream());
     }
 
     return rebundle();

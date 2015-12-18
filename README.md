@@ -19,7 +19,12 @@ var app = angular.module('app', [ngPackery]);
 ### Manually
 include in HTML
 ```html
-<script src="angular.js"></script>
+<!-- Dependencies -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/packery/1.4.3/packery.pkgd.min.js"></script>
+<!-- End Dependencies -->
+
 <script src="angular-packery.js"></script>
 ```
 attach to application
@@ -30,11 +35,11 @@ var app = angular.module('app', ['ngPackery']);
 ## Example
 Any options listed in [Packery](http://packery.metafizzy.co/options.html) website can be used in the 'data-packery-options' attribute
 ```html
-<div data-packery data-packery-options='{ "columnWidth": 200 }'>
-    <div data-packery-item data-ng-repeat="item in list">
+<packery data-packery-options='{ "columnWidth": 200 }'>
+    <packery-item data-ng-repeat="item in list">
         {{ item }}
-    </div>
-</div>
+    </packery-item>
+</packery>
 ```
 
 ## Credits

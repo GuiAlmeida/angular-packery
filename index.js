@@ -1,2 +1,2 @@
-require('./angular-packery.js');
+require('./build/angular-packery.js');
 module.exports = 'ngPackery';
