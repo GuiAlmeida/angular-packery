@@ -1,22 +1,20 @@
-'use strict';
-
 class packeryController {
     constructor() {
-        this.config = {};
-        this.container = undefined;
+      this.config = {};
+      this.container = undefined;
     }
 
     ready() {
-        return !!this.config;
+      return !!this.config;
     }
 
     initialize() {
-        if (this.container === undefined) {
-            let defaultOpts = {itemSelector: 'packery-item'},
-                opts = !this.config.packeryOptions ? defaultOpts : $.extend(defaultOpts, this.config.packeryOptions);
+      if (this.container === undefined) {
+        const defaultOpts = { itemSelector: 'packery-item' };
+        const opts = !this.config.packeryOptions ? defaultOpts : $.extend(defaultOpts, this.config.packeryOptions);
 
-            this.container = new Packery(this.config.packeryContainer[0], opts);
-        }
+        this.container = new Packery(this.config.packeryContainer[0], opts);
+      }
     }
 }
 
